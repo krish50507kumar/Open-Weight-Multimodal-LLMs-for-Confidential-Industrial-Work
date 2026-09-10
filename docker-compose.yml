@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+
+  # ── AI Workbench (Streamlit app) ────────────────────────────────────────────
+  workbench:
+    build: .
+    container_name: sih_workbench
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data          # persistent PDFs, ChromaDB, sessions, audit log
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - DEFAULT_MODEL=gemma2:2b
+      - USERS=admin:admin123,engineer:eng456
+    env_file:
+      - .env                      # override with .env file if present
+    depends_on:
+      - ollama
+    restart: unless-stopped
+    networks:
+      - workbench_net
+
+  # ── Ollama (local LLM server) ───────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: sih_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama  # model weights stored here
+    restart: unless-stopped
+    networks:
+      - workbench_net
+    # Uncomment the next two lines if you have an NVIDIA GPU:
+    # deploy:
+    #   resources: { reservations: { devices: [{ driver: nvidia, count: all, capabilities: [gpu] }] } }
+
+volumes:
+  ollama_data:
+
+networks:
+  workbench_net:
+    driver: bridge
