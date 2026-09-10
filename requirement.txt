@@ -1,3 +1,0 @@
-ollama
-pypdf
-sentence_transformers
