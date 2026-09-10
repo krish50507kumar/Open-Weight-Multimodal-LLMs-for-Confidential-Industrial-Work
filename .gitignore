@@ -2,7 +2,8 @@
 .idea
 .venv
 .venv/
-.data/
-.data/raw_pdfs/
-.data/chroma_db/
-__pycache__
+data/
+data/*
+__pycache__/
+*.pyc
+
