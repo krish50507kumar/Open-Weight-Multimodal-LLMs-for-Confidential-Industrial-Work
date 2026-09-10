@@ -1,0 +1,17 @@
+# Core LLM & inference
+ollama>=0.2.0
+
+# PDF extraction
+pypdf>=4.0.0
+
+# Embeddings
+sentence-transformers>=2.7.0
+
+# Vector store
+chromadb>=0.5.0
+
+# Web UI
+streamlit>=1.35.0
+
+# Data handling (already a streamlit dep, but explicit)
+pandas>=2.0.0
