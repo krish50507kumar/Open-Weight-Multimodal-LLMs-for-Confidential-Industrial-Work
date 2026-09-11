@@ -164,4 +164,5 @@ Set in `.env` via the `USERS` variable:
 USERS=admin:admin123,engineer:eng456
 ```
 
-**Change these before any production/demo deployment.**
+[//]: # ()
+[//]: # (**Change these before any production/demo deployment.**)
