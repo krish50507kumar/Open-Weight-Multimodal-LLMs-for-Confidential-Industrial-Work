@@ -29,7 +29,7 @@ SESSION_DB: str = os.getenv("SESSION_DB", "data/sessions.db")
 
 # ── Auth ──────────────────────────────────────────────────────────────────────
 # Format in .env:  USERS=admin:admin123,engineer:pass456
-_users_raw: str = os.getenv("USERS", "admin:admin123")
+_users_raw: str = os.getenv("USERS", "admin:admin123,engineer:eng456")
 USERS: dict[str, str] = {}
 for _entry in _users_raw.split(","):
     _parts = _entry.strip().split(":", 1)
